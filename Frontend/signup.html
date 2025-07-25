@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog Generator - Sign Up</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <!-- Toastify CSS -->
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Left Panel with Image -->
+    <div class="left-side">
+      <div class="content">
+        <div>
+          <h1>Join Us Today!</h1>
+          <p>Start your journey with AI-powered blogging</p>
+        </div>
+        <div id="lottieAnimation" class="hero-image"></div>
+      </div>
+    </div>
+
+    <!-- Right Panel with Form -->
+    <div class="right-side">
+      <div class="form-container">
+        <h2 class="title">Create Account</h2>
+        <p class="subtitle">Start your blogging journey today!</p>
+        
+        <form class="signup-form">
+          <div class="input-field">
+            <i class="fas fa-user"></i>
+            <input type="text" placeholder="Full Name" id="signupName" required />
+          </div>
+          
+          <div class="input-field">
+            <i class="fas fa-envelope"></i>
+            <input type="email" placeholder="Email Address" id="signupEmail" required />
+          </div>
+          
+          <div class="input-field">
+            <i class="fas fa-lock"></i>
+            <input type="password" placeholder="Password" id="signupPassword" required />
+          </div>
+          
+          <div class="input-field">
+            <i class="fas fa-lock"></i>
+            <input type="password" placeholder="Confirm Password" id="signupConfirmPassword" required />
+          </div>
+          
+          <div id="passwordMatchMessage" class="password-match-message"></div>
+          
+          <button type="submit" class="btn">Sign Up</button>
+          
+          <div class="social-signup">
+          <p class="login-link">
+            Already have an account? <a href="login.html">Log in</a>
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Lottie Player -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
+  <script>
+    // Initialize Lottie animation
+    lottie.loadAnimation({
+      container: document.getElementById('lottieAnimation'),
+      renderer: 'svg',
+      loop: true,
+      autoplay: true,
+      path: 'assets/a-girl-is-writing-content-on-a-laptop.json'
+    });
+  </script>
+  <script src="script.js"></script>
+  <!-- Toastify JS -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+</body>
+</html>

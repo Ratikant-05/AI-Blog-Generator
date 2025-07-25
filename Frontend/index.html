@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlogMagic - Create Beautiful Blogs Instantly</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Required Lovable script tag for new features -->
+    <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
+</head>
+<body>
+    <!-- Authentication Check -->
+    <script>
+        // Check if user is logged in via token or cookie
+        const token = localStorage.getItem('token');
+        const userCookie = document.cookie.split(';').find(cookie => cookie.trim().startsWith('user='));
+        
+        if (!token && !userCookie) {
+            window.location.href = 'login.html';
+        }
+    </script>
+    
+    <div class="particles-container">
+        <div class="particle" style="width: 10px; height: 10px; top: 10%; left: 20%;"></div>
+        <div class="particle" style="width: 15px; height: 15px; top: 30%; left: 50%;"></div>
+        <div class="particle" style="width: 8px; height: 8px; top: 60%; left: 30%;"></div>
+        <div class="particle" style="width: 12px; height: 12px; top: 80%; left: 70%;"></div>
+        <div class="particle" style="width: 6px; height: 6px; top: 40%; left: 80%;"></div>
+    </div>
+
+    <!-- Decorative Elements -->
+    <div class="decorative-elements">
+        <!-- Stars (will be reduced on scroll) -->
+        <div class="stars-container">
+            <div class="decorative-element star" style="top: 5%; left: 10%;"></div>
+            <div class="decorative-element star" style="top: 15%; left: 25%;"></div>
+            <div class="decorative-element star" style="top: 25%; right: 20%;"></div>
+            <div class="decorative-element star" style="bottom: 30%; left: 15%;"></div>
+            <div class="decorative-element star" style="bottom: 20%; right: 20%;"></div>
+            <div class="decorative-element star" style="top: 40%; left: 50%;"></div>
+            
+            <!-- Small Stars -->
+            <div class="decorative-element star-small" style="top: 8%; left: 15%;"></div>
+            <div class="decorative-element star-small" style="top: 20%; right: 30%;"></div>
+            <div class="decorative-element star-small" style="bottom: 25%; left: 25%;"></div>
+            <div class="decorative-element star-small" style="bottom: 15%; right: 35%;"></div>
+            <div class="decorative-element star-small" style="top: 35%; left: 45%;"></div>
+            <div class="decorative-element star-small" style="top: 60%; right: 25%;"></div>
+            <div class="decorative-element star-small" style="bottom: 40%; left: 40%;"></div>
+            <div class="decorative-element star-small" style="top: 70%; right: 15%;"></div>
+            
+            <!-- Medium Stars -->
+            <div class="decorative-element star-medium" style="top: 12%; left: 30%;"></div>
+            <div class="decorative-element star-medium" style="top: 30%; right: 40%;"></div>
+            <div class="decorative-element star-medium" style="bottom: 35%; left: 20%;"></div>
+            <div class="decorative-element star-medium" style="bottom: 25%; right: 30%;"></div>
+            <div class="decorative-element star-medium" style="top: 45%; left: 35%;"></div>
+            <div class="decorative-element star-medium" style="top: 65%; right: 20%;"></div>
+            
+            <!-- Large Stars -->
+            <div class="decorative-element star-large" style="top: 10%; right: 10%;"></div>
+            <div class="decorative-element star-large" style="bottom: 10%; left: 10%;"></div>
+            <div class="decorative-element star-large" style="top: 50%; right: 10%;"></div>
+            <div class="decorative-element star-large" style="bottom: 50%; left: 10%;"></div>
+        </div>
+
+        <!-- Squares (will increase on scroll) -->
+        <div class="squares-container">
+            <div class="decorative-element square" style="top: 10%; left: 20%;"></div>
+            <div class="decorative-element square" style="top: 30%; right: 15%;"></div>
+            <div class="decorative-element square" style="bottom: 20%; left: 25%;"></div>
+            <div class="decorative-element square" style="bottom: 40%; right: 30%;"></div>
+            <div class="decorative-element square" style="top: 50%; left: 40%;"></div>
+            <div class="decorative-element square" style="top: 70%; right: 25%;"></div>
+            <div class="decorative-element square" style="bottom: 60%; left: 35%;"></div>
+            <div class="decorative-element square" style="top: 80%; right: 35%;"></div>
+            <div class="decorative-element square" style="bottom: 30%; left: 45%;"></div>
+            <div class="decorative-element square" style="top: 20%; right: 45%;"></div>
+        </div>
+    </div>
+
+    <!-- =========================== -->
+    <!-- HEADER & NAVIGATION -->
+    <!-- =========================== -->
+    <header>
+        <nav>
+            <div class="logo">
+                <h1>BlogMagic</h1>
+            </div>
+            <div class="nav-links">
+                <a href="#features">Features</a>
+                <a href="#how-it-works">How It Works</a>
+                <a href="#testimonials">Testimonials</a>
+                <button id="logout-btn" class="logout-button">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+            <div class="hamburger">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- =========================== -->
+    <!-- HERO SECTION WITH INPUT -->
+    <!-- =========================== -->
+    <section class="hero">
+        <div class="typewriter-box">
+            <span class="typewriter-hashtag">#</span>
+            <span class="typewriter-text"></span>
+        </div>
+        <div class="hero-content">
+            <h1>Create Amazing Blog Content in Seconds</h1>
+            <p style="margin-bottom: 5rem;">Our AI-powered assistant helps you generate professional blog posts on any topic. Just enter your blog idea below to get started.</p>
+            
+            <form id="blog-form" onsubmit="return checkAuthAndSubmit(event)">
+                <div class="input-container">
+                    <input type="text" id="blog-topic" name="topic" placeholder="Enter your blog topic or idea..." required class="focus-ring">
+                    <button type="submit" class="btn btn-primary hover-lift">
+                        <i class="fa-solid fa-wand-magic-sparkles icon-animate"></i> Create Magic
+                    </button>
+                </div>
+            </form>
+            
+            <script>
+                function checkAuthAndSubmit(event) {
+                    event.preventDefault();
+                    const token = localStorage.getItem('token');
+                    const userCookie = document.cookie.split(';').find(cookie => cookie.trim().startsWith('user='));
+                    
+                    if (!token && !userCookie) {
+                        window.location.href = 'login.html';
+                        return false;
+                    }
+                    
+                    const topic = document.getElementById('blog-topic').value;
+                    
+                    // Clear all previous blog data and chat history for fresh start
+                    localStorage.removeItem('chatHistory');
+                    localStorage.removeItem('BlogGenerated');
+                    localStorage.removeItem('previousBlogContent');
+                    localStorage.removeItem('currentBlogId');
+                    
+                    // Clear the generation flag for this specific topic
+                    localStorage.removeItem(`blogGenerated_${topic}`);
+                    
+                    // Clear any old generation flags (optional cleanup)
+                    Object.keys(localStorage).forEach(key => {
+                        if (key.startsWith('blogGenerated_')) {
+                            localStorage.removeItem(key);
+                        }
+                    });
+                    
+                    console.log('🧹 Fresh start: Cleared all previous blog data and chat history');
+                    
+                    window.location.href = `blog-generator.html?topic=${encodeURIComponent(topic)}`;
+                    return false;
+                }
+            </script>
+        </div>
+        <div class="hero-illustration">
+            <div class="blog-post">
+                <div class="post-header">
+                    <div class="post-title">
+                        <div class="title-line"></div>
+                        <div class="title-line"></div>
+                    </div>
+                    <div class="post-meta">
+                        <div class="meta-item"></div>
+                        <div class="meta-item"></div>
+                    </div>
+                </div>
+                <div class="post-content">
+                    <p>Discover the power of AI-driven content creation with BlogMagic.</p>
+                </div>
+                <div class="post-chart">
+                    <div class="chart-bars">
+                        <div class="chart-bar" style="--height: 60%; --delay: 0s;"></div>
+                        <div class="chart-bar" style="--height: 80%; --delay: 0.2s;"></div>
+                        <div class="chart-bar" style="--height: 40%; --delay: 0.4s;"></div>
+                        <div class="chart-bar" style="--height: 90%; --delay: 0.6s;"></div>
+                        <div class="chart-bar" style="--height: 70%; --delay: 0.8s;"></div>
+                    </div>
+                    <div class="chart-labels">
+                        <span>Mon</span>
+                        <span>Tue</span>
+                        <span>Wed</span>
+                        <span>Thu</span>
+                        <span>Fri</span>
+                    </div>
+                </div>
+                <div class="post-footer">
+                    <div class="author-info">
+                        <div class="author-avatar">
+                            <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&h=100&fit=crop" alt="Author Avatar">
+                        </div>
+                        <div class="author-details">
+                            <div class="author-name">Sarah Johnson</div>
+                            <div class="post-date">May 15, 2024</div>
+                        </div>
+                    </div>
+                    <div class="share-button">
+                        <i class="fa-solid fa-share-nodes"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="floating-elements">
+                <div class="floating-element element-1">
+                    <i class="fa-solid fa-pen-fancy"></i>
+                </div>
+                <div class="floating-element element-2">
+                    <i class="fa-solid fa-image"></i>
+                </div>
+                <div class="floating-element element-3">
+                    <i class="fa-solid fa-chart-line"></i>
+                </div>
+                <div class="floating-element element-4">
+                    <i class="fa-solid fa-tags"></i>
+                </div>
+                <div class="floating-element element-5">
+                    <i class="fa-solid fa-clock"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================== -->
+    <!-- STATS SECTION -->
+    <!-- =========================== -->
+    <section class="stats">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <span class="stat-number">10K+</span>
+                <div class="stat-text">Active Users</div>
+                <div class="stat-details">
+                    <div class="stat-trend"><i class="fa-solid fa-arrow-up"></i> 15% this month</div>
+                    <span class="stat-region">Global Reach</span>
+                </div>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">5M+</span>
+                <span class="stat-text">Blog Posts Generated</span>
+                <div class="stat-details">
+                    <div class="stat-trend"><i class="fa-solid fa-arrow-up"></i> 25% growth</div>
+                    <span class="stat-region">Across 50+ industries</span>
+                </div>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">98%</span>
+                <span class="stat-text">Satisfaction Rate</span>
+                <div class="stat-details">
+                    <div class="stat-trend"><i class="fa-solid fa-star"></i> 4.9/5 rating</div>
+                    <span class="stat-region">Based on 10K+ reviews</span>
+                </div>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">45%</span>
+                <span class="stat-text">Time Saved</span>
+                <div class="stat-details">
+                    <div class="stat-trend"><i class="fa-solid fa-clock"></i> 4.5h per post</div>
+                    <span class="stat-region">Average user report</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================== -->
+    <!-- CHARTS SECTION -->
+    <!-- =========================== -->
+    <section class="charts">
+        <!-- Floating Particles -->
+        <div class="chart-particle" style="top: 10%; left: 20%;"></div>
+        <div class="chart-particle" style="top: 30%; left: 50%;"></div>
+        <div class="chart-particle" style="top: 60%; left: 30%;"></div>
+        <div class="chart-particle" style="top: 80%; left: 70%;"></div>
+        <div class="chart-particle" style="top: 40%; left: 80%;"></div>
+        
+        <h2 class="section-title">Time Saved with BlogMagic</h2>
+        <div class="charts-grid">
+            <!-- Original Cards -->
+            <!-- Average Time Saved Chart -->
+            <div class="chart-card">
+                <div class="chart-header">
+                    <div class="chart-icon">
+                        <i class="fa-solid fa-clock"></i>
+                    </div>
+                    <h3 class="chart-title">Average Time Saved</h3>
+                </div>
+                <div class="chart-content">
+                    <div class="progress-circle" data-value="80">
+                        <div class="progress-circle-value">4.5h</div>
+                        <div class="progress-circle-label">Per Post</div>
+                    </div>
+                    <div class="chart-details">
+                        <div class="detail-item">
+                            <div class="detail-icon">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                            </div>
+                            <div class="detail-info">
+                                <div class="detail-value">3h</div>
+                                <div class="detail-label">Research</div>
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-icon">
+                                <i class="fa-solid fa-pen"></i>
+                            </div>
+                            <div class="detail-info">
+                                <div class="detail-value">3.5h</div>
+                                <div class="detail-label">Writing</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p class="chart-description">BlogMagic helps content creators save an average of 4.5 hours per blog post, with significant time savings in both research and writing phases.</p>
+            </div>
+
+            <!-- Monthly Time Saved Chart -->
+            <div class="chart-card">
+                <div class="chart-header">
+                    <div class="chart-icon">
+                        <i class="fa-solid fa-calendar"></i>
+                    </div>
+                    <h3 class="chart-title">Monthly Time Saved</h3>
+                </div>
+                <div class="chart-content">
+                    <div class="progress-circle" data-value="90">
+                        <div class="progress-circle-value">45h</div>
+                        <div class="progress-circle-label">Professional</div>
+                    </div>
+                    <div class="chart-details">
+                        <div class="detail-item">
+                            <div class="detail-icon">
+                                <i class="fa-solid fa-user"></i>
+                            </div>
+                            <div class="detail-info">
+                                <div class="detail-value">20h</div>
+                                <div class="detail-label">Casual</div>
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-icon">
+                                <i class="fa-solid fa-users"></i>
+                            </div>
+                            <div class="detail-info">
+                                <div class="detail-value">30h</div>
+                                <div class="detail-label">Regular</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p class="chart-description">Depending on your blogging frequency, users save between 20-45 hours per month, allowing more time for content strategy and audience engagement.</p>
+            </div>
+
+            <!-- ROI Chart -->
+            <div class="chart-card">
+                <div class="chart-header">
+                    <div class="chart-icon">
+                        <i class="fa-solid fa-chart-line"></i>
+                    </div>
+                    <h3 class="chart-title">Productivity Impact</h3>
+                </div>
+                <div class="chart-content">
+                    <div class="progress-circle" data-value="85">
+                        <div class="progress-circle-value">3x</div>
+                        <div class="progress-circle-label">Consistency</div>
+                    </div>
+                    <div class="chart-details">
+                        <div class="detail-item">
+                            <div class="detail-icon">
+                                <i class="fa-solid fa-arrow-up"></i>
+                            </div>
+                            <div class="detail-info">
+                                <div class="detail-value">2.5x</div>
+                                <div class="detail-label">Output</div>
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-icon">
+                                <i class="fa-solid fa-comments"></i>
+                            </div>
+                            <div class="detail-info">
+                                <div class="detail-value">2.8x</div>
+                                <div class="detail-label">Engagement</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p class="chart-description">Users report 2.5x more content output, 3x better publishing consistency, and 2.8x higher audience engagement after using BlogMagic.</p>
+            </div>
+
+            <!-- Duplicated Cards for Infinite Loop -->
+            <!-- Average Time Saved Chart (Duplicate) -->
+            <div class="chart-card">
+                <div class="chart-header">
+                    <div class="chart-icon">
+                        <i class="fa-solid fa-clock"></i>
+                    </div>
+                    <h3 class="chart-title">Average Time Saved</h3>
+                </div>
+                <div class="chart-content">
+                    <div class="progress-circle" data-value="80">
+                        <div class="progress-circle-value">4.5h</div>
+                        <div class="progress-circle-label">Per Post</div>
+                    </div>
+                    <div class="chart-details">
+                        <div class="detail-item">
+                            <div class="detail-icon">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                            </div>
+                            <div class="detail-info">
+                                <div class="detail-value">3h</div>
+                                <div class="detail-label">Research</div>
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-icon">
+                                <i class="fa-solid fa-pen"></i>
+                            </div>
+                            <div class="detail-info">
+                                <div class="detail-value">3.5h</div>
+                                <div class="detail-label">Writing</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p class="chart-description">BlogMagic helps content creators save an average of 4.5 hours per blog post, with significant time savings in both research and writing phases.</p>
+            </div>
+
+            <!-- Monthly Time Saved Chart (Duplicate) -->
+            <div class="chart-card">
+                <div class="chart-header">
+                    <div class="chart-icon">
+                        <i class="fa-solid fa-calendar"></i>
+                    </div>
+                    <h3 class="chart-title">Monthly Time Saved</h3>
+                </div>
+                <div class="chart-content">
+                    <div class="progress-circle" data-value="90">
+                        <div class="progress-circle-value">45h</div>
+                        <div class="progress-circle-label">Professional</div>
+                    </div>
+                    <div class="chart-details">
+                        <div class="detail-item">
+                            <div class="detail-icon">
+                                <i class="fa-solid fa-user"></i>
+                            </div>
+                            <div class="detail-info">
+                                <div class="detail-value">20h</div>
+                                <div class="detail-label">Casual</div>
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-icon">
+                                <i class="fa-solid fa-users"></i>
+                            </div>
+                            <div class="detail-info">
+                                <div class="detail-value">30h</div>
+                                <div class="detail-label">Regular</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p class="chart-description">Depending on your blogging frequency, users save between 20-45 hours per month, allowing more time for content strategy and audience engagement.</p>
+            </div>
+
+            <!-- ROI Chart (Duplicate) -->
+            <div class="chart-card">
+                <div class="chart-header">
+                    <div class="chart-icon">
+                        <i class="fa-solid fa-chart-line"></i>
+                    </div>
+                    <h3 class="chart-title">Productivity Impact</h3>
+                </div>
+                <div class="chart-content">
+                    <div class="progress-circle" data-value="85">
+                        <div class="progress-circle-value">3x</div>
+                        <div class="progress-circle-label">Consistency</div>
+                    </div>
+                    <div class="chart-details">
+                        <div class="detail-item">
+                            <div class="detail-icon">
+                                <i class="fa-solid fa-arrow-up"></i>
+                            </div>
+                            <div class="detail-info">
+                                <div class="detail-value">2.5x</div>
+                                <div class="detail-label">Output</div>
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-icon">
+                                <i class="fa-solid fa-comments"></i>
+                            </div>
+                            <div class="detail-info">
+                                <div class="detail-value">2.8x</div>
+                                <div class="detail-label">Engagement</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p class="chart-description">Users report 2.5x more content output, 3x better publishing consistency, and 2.8x higher audience engagement after using BlogMagic.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================== -->
+    <!-- FEATURES SECTION -->
+    <!-- =========================== -->
+    <section id="features" class="features">
+        <!-- Feature Particles -->
+        <div class="feature-particle" style="top: 10%; left: 20%;"></div>
+        <div class="feature-particle" style="top: 30%; left: 50%;"></div>
+        <div class="feature-particle" style="top: 60%; left: 30%;"></div>
+        <div class="feature-particle" style="top: 80%; left: 70%;"></div>
+        <div class="feature-particle" style="top: 40%; left: 80%;"></div>
+
+        <h2 class="section-title">Smart Features for Modern Content Creators</h2>
+        <div class="features-grid">
+            <!-- AI Content Generator Feature -->
+            <div class="feature-card hover-lift" data-feature="ai-content">
+                <div class="feature-tooltip">Click to learn more about AI Content Generation</div>
+                <div class="feature-icon">
+                    <i class="fa-solid fa-robot icon-pulse"></i>
+                </div>
+                <h3>AI Content Generator</h3>
+                <p>Create high-quality posts with our AI assistant. Get suggestions, overcome writer's block, and optimize your content.</p>
+                <p class="feature-details">Our advanced AI uses state-of-the-art language models to help you craft engaging content that resonates with your audience.</p>
+            </div>
+            
+            <!-- Beautiful Templates Feature -->
+            <div class="feature-card hover-lift" data-feature="templates">
+                <div class="feature-tooltip">Click to explore our template collection</div>
+                <div class="feature-icon">
+                    <i class="fa-solid fa-palette icon-pulse"></i>
+                </div>
+                <h3>Beautiful Templates</h3>
+                <p>Choose from hundreds of professionally designed templates to make your blog stand out from the crowd.</p>
+                <p class="feature-details">Each template is fully responsive and customizable to match your brand identity and content style.</p>
+            </div>
+            
+            <!-- SEO Feature -->
+            <div class="feature-card hover-lift" data-feature="seo">
+                <div class="feature-tooltip">Click to discover our SEO tools</div>
+                <div class="feature-icon">
+                    <i class="fa-solid fa-magnifying-glass icon-pulse"></i>
+                </div>
+                <h3>SEO Optimization</h3>
+                <p>Improve your search engine ranking with built-in SEO tools and suggestions for better visibility.</p>
+                <p class="feature-details">Get real-time recommendations for keywords, meta descriptions, and content structure to maximize your organic reach.</p>
+            </div>
+            
+            <!-- Free Export Feature -->
+            <div class="feature-card hover-lift" data-feature="export">
+                <div class="feature-tooltip">Click to see export options</div>
+                <div class="feature-icon">
+                    <i class="fa-solid fa-file-export icon-pulse"></i>
+                </div>
+                <h3>Easy Export</h3>
+                <p>Export your blog posts in multiple formats including HTML, Markdown, and direct WordPress integration.</p>
+                <p class="feature-details">Seamlessly publish to your existing platforms or download your content for offline use.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Feature Popup Overlay -->
+    <div class="feature-popup-overlay"></div>
+
+    <!-- Feature Popup -->
+    <div class="feature-popup">
+        <button class="popup-close"><i class="fa-solid fa-xmark"></i></button>
+        <div class="popup-content">
+            <div class="popup-icon"></div>
+            <h3 class="popup-title"></h3>
+            <p class="popup-description"></p>
+            <div class="popup-details"></div>
+        </div>
+    </div>
+
+    <!-- =========================== -->
+    <!-- HOW IT WORKS SECTION -->
+    <!-- =========================== -->
+    <section id="how-it-works" class="workflow">
+        <div class="workflow-content">
+            <h2 class="section-title">How It Works</h2>
+            <div class="workflow-steps">
+                <!-- Step 1 -->
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-icon">
+                        <i class="fa-solid fa-lightbulb icon-bounce"></i>
+                    </div>
+                    <h3>Enter Your Topic</h3>
+                    <p>Type in your blog topic or idea in the input box at the top of the page.</p>
+                    <p class="step-details">Be as specific or general as you like - our AI can work with both broad concepts and detailed prompts.</p>
+                </div>
+                
+                <!-- Step 2 -->
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-icon">
+                        <i class="fa-solid fa-comments icon-bounce"></i>
+                    </div>
+                    <h3>Chat with AI</h3>
+                    <p>Refine your content through an interactive chat with our AI assistant.</p>
+                    <p class="step-details">Ask questions, request changes, or provide additional details to tailor the content to your needs.</p>
+                </div>
+                
+                <!-- Step 3 -->
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-icon">
+                        <i class="fa-solid fa-download icon-bounce"></i>
+                    </div>
+                    <h3>Export & Publish</h3>
+                    <p>Once satisfied, export your blog post in your preferred format.</p>
+                    <p class="step-details">Publish directly to your website or download to use elsewhere - no limitations.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================== -->
+    <!-- TESTIMONIALS SECTION -->
+    <!-- =========================== -->
+    <section id="testimonials" class="testimonials">
+        <h2 class="section-title">What Our Users Say</h2>
+        <div class="testimonials-grid">
+            <!-- Testimonial 1 -->
+            <div class="testimonial-card hover-lift">
+                <div class="testimonial-content">
+                    <p>"BlogMagic revolutionized my content creation process. The AI assistant helps me write consistently high-quality posts in half the time."</p>
+                </div>
+                <div class="testimonial-author">
+                    <div class="author-avatar">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop" alt="Jasmine">
+                    </div>
+                    <div>
+                        <h4>Jasmine</h4>
+                        <p>Travel Blogger</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Testimonial 2 -->
+            <div class="testimonial-card hover-lift">
+                <div class="testimonial-content">
+                    <p>"As someone who struggles with writer's block, this tool has been a game-changer. I can now publish consistently without the stress."</p>
+                </div>
+                <div class="testimonial-author">
+                    <div class="author-avatar">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop" alt="David Laid">
+                    </div>
+                    <div>
+                        <h4>David Laid</h4>
+                        <p>Tech Reviewer</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Testimonial 3 -->
+            <div class="testimonial-card hover-lift">
+                <div class="testimonial-content">
+                    <p>"As someone with no design skills, the templates made it possible for me to create a professional-looking blog that my readers love."</p>
+                </div>
+                <div class="testimonial-author">
+                    <div class="author-avatar">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=100&h=100&fit=crop" alt="Maria Rodriguez">
+                    </div>
+                    <div>
+                        <h4>Maria Rodriguez</h4>
+                        <p>Food Blogger</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Testimonial 4 -->
+            <div class="testimonial-card hover-lift">
+                <div class="testimonial-content">
+                    <p>"The SEO optimization features have helped my blog rank higher in search results. My organic traffic has increased significantly since using BlogMagic."</p>
+                </div>
+                <div class="testimonial-author">
+                    <div class="author-avatar">
+                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop" alt="James Wilson">
+                    </div>
+                    <div>
+                        <h4>James Wilson</h4>
+                        <p>Digital Marketer</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================== -->
+    <!-- FAQ SECTION -->
+    <!-- =========================== -->
+    <section id="faq" class="faq">
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <div class="faq-container">
+            <!-- FAQ Item 1 -->
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>How does BlogMagic work?</h3>
+                    <div class="faq-icon">
+                        <i class="fa-solid fa-plus"></i>
+                    </div>
+                </div>
+                <div class="faq-answer">
+                    <p>BlogMagic uses advanced AI technology to help you create high-quality blog content. Simply enter your topic, and our AI will generate a well-structured, engaging blog post that you can customize to your needs.</p>
+                </div>
+            </div>
+
+            <!-- FAQ Item 2 -->
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>Is BlogMagic free to use?</h3>
+                    <div class="faq-icon">
+                        <i class="fa-solid fa-plus"></i>
+                    </div>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes, BlogMagic is completely free to use! You can create unlimited blog posts without any cost. We believe in making content creation accessible to everyone.</p>
+                </div>
+            </div>
+
+            <!-- FAQ Item 3 -->
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>Can I customize the generated content?</h3>
+                    <div class="faq-icon">
+                        <i class="fa-solid fa-plus"></i>
+                    </div>
+                </div>
+                <div class="faq-answer">
+                    <p>Absolutely! You have full control over the generated content. You can edit, modify, and personalize the text to match your style and requirements.</p>
+                </div>
+            </div>
+
+            <!-- FAQ Item 4 -->
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>What formats can I export my blog posts in?</h3>
+                    <div class="faq-icon">
+                        <i class="fa-solid fa-plus"></i>
+                    </div>
+                </div>
+                <div class="faq-answer">
+                    <p>You can export your blog posts in multiple formats including HTML, Markdown, and even directly to WordPress. We're constantly adding more export options based on user feedback.</p>
+                </div>
+            </div>
+
+            <!-- FAQ Item 5 -->
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>How do I get started with BlogMagic?</h3>
+                    <div class="faq-icon">
+                        <i class="fa-solid fa-plus"></i>
+                    </div>
+                </div>
+                <div class="faq-answer">
+                    <p>Getting started is easy! Just enter your blog topic in the input box at the top of the page, and our AI will help you create amazing content in seconds.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================== -->
+    <!-- CTA SECTION -->
+    <!-- =========================== -->
+    <section class="cta">
+        <div class="cta-content">
+            <h2>Ready to Create Amazing Blog Content?</h2>
+            <p>Join thousands of content creators who trust BlogMagic for their blogging needs.</p>
+            <form onsubmit="return checkAuthAndSubmit(event)">
+                <div class="input-container cta-input">
+                    <input type="text" name="topic" placeholder="Enter your blog topic..." required class="focus-ring">
+                    <button type="submit" class="btn btn-primary hover-lift">
+                        <i class="fa-solid fa-wand-magic-sparkles icon-animate"></i> Start Creating
+                    </button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- =========================== -->
+    <!-- FOOTER SECTION -->
+    <!-- =========================== -->
+    <footer>
+        <div class="footer-grid">
+            <!-- Company Info -->
+            <div class="footer-col">
+                <h3>BlogMagic</h3>
+                <p>Create beautiful blogs without coding. Simple, powerful, and completely free.</p>
+                <div class="social-icons">
+                    <a href="#" class="hover-lift"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="#" class="hover-lift"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="#" class="hover-lift"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" class="hover-lift"><i class="fa-brands fa-linkedin"></i></a>
+                </div>
+            </div>
+            
+            <!-- Product Links -->
+            <div class="footer-col">
+                <h4>Product</h4>
+                <ul>
+                    <li><a href="#"><i class="fa-solid fa-chevron-right"></i> Features</a></li>
+                    <li><a href="#"><i class="fa-solid fa-chevron-right"></i> Templates</a></li>
+                    <li><a href="#"><i class="fa-solid fa-chevron-right"></i> Roadmap</a></li>
+                </ul>
+            </div>
+            
+            <!-- Company Links -->
+            <div class="footer-col">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#"><i class="fa-solid fa-chevron-right"></i> About Us</a></li>
+                    <li><a href="#"><i class="fa-solid fa-chevron-right"></i> Blog</a></li>
+                    <li><a href="#"><i class="fa-solid fa-chevron-right"></i> Contact</a></li>
+                </ul>
+            </div>
+            
+            <!-- Resources Links -->
+            <div class="footer-col">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="#"><i class="fa-solid fa-chevron-right"></i> Documentation</a></li>
+                    <li><a href="#"><i class="fa-solid fa-chevron-right"></i> Tutorials</a></li>
+                    <li><a href="#"><i class="fa-solid fa-chevron-right"></i> Support</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Footer Bottom -->
+        <div class="footer-bottom">
+            <p>&copy; 2025 BlogMagic. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Add loading animation for dynamic content -->
+    <div class="loading" style="display: none;">
+        <i class="fa-solid fa-spinner"></i>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
