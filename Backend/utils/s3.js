@@ -31,7 +31,7 @@ export const configureBucketCORS = async () => {
     await s3.putBucketCors(corsParams).promise();
     console.log('✅ S3 bucket CORS configured successfully');
   } catch (error) {
-    console.error('❌ Error configuring S3 bucket CORS:', error);
+    console.error('❌ Error configuring S3 bucket CORS:', error.message);
   }
 };
 

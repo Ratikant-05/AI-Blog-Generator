@@ -65,7 +65,6 @@ mongoose.connect(mongoURI)
     .catch(err => {
         console.error('❌ MongoDB connection error:', err);
         console.log('💡 Make sure MongoDB is running or set MONGODB_URI environment variable');
-        process.exit(1);
     });
 
 // Configure S3 bucket CORS on server start
